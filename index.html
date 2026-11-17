@@ -199,9 +199,11 @@
         <p>Cada producto tiene su propia marca. Todos salen de la misma manada.</p>
       </div>
       <div class="pgrid">
-        <article class="pcard pcard--antesala">
-          <figure class="pcard__media">
-            <svg class="ant-scene" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+
+        <!-- Antesala: noche, marfil y champán -->
+        <article class="pcard pcard--antesala pcard--link">
+          <figure class="pcard__media" aria-hidden="true">
+            <svg class="ant-scene" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" focusable="false">
               <defs>
                 <linearGradient id="antCeil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1224"/><stop offset="1" stop-color="#16223F"/></linearGradient>
                 <linearGradient id="antFloor" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0B1224"/><stop offset="1" stop-color="#1A2848"/></linearGradient>
@@ -228,44 +230,91 @@
               <circle cx="200" cy="296" r="46" fill="url(#antGlow)"/>
               <rect class="ant-scene__slit" x="198.6" y="234" width="2.8" height="126" fill="#F2E8D6"/>
             </svg>
-            <img class="ext-img" src="assets/img/antesala-pasillo.jpg" alt="Pasillo de hotel en penumbra con una puerta entreabierta que deja salir una línea de luz" width="1024" height="1280" loading="lazy">
-            <figcaption>Imagen ilustrativa</figcaption>
           </figure>
           <div class="pcard__body">
-            <div class="ant-logo">
-              <svg viewBox="14 8 92 136" aria-hidden="true"><path d="M30 140V44L44 16V140Z" fill="#D2B88C"/><path d="M90 140V44L76 16V140Z" fill="#D2B88C"/><path d="M44 16L48 22V137L44 140Z" fill="#957C55"/><path d="M76 16L72 22V137L76 140Z" fill="#957C55"/><path d="M20 140V64L24 57V140Z" fill="#D2B88C"/><path d="M100 140V64L96 57V140Z" fill="#D2B88C"/><rect x="58.6" y="30" width="2.8" height="110" fill="#F2E8D6"/></svg>
+            <div class="pcard__brand">
+              <svg class="ant-mark" viewBox="14 8 92 136" aria-hidden="true" focusable="false"><path d="M30 140V44L44 16V140Z" fill="#111B33"/><path d="M90 140V44L76 16V140Z" fill="#111B33"/><path d="M20 140V64L24 57V140Z" fill="#111B33"/><path d="M100 140V64L96 57V140Z" fill="#111B33"/><rect x="58.6" y="30" width="2.8" height="110" fill="#D2B88C"/></svg>
               <h3 class="pcard__name">Antesala</h3>
             </div>
             <p class="pcard__line">Explora el hotel antes de llegar.</p>
-            <p class="pcard__what">El huésped recorre el hotel antes de reservar: el edificio en 3D, cada piso, cada habitación y sus espacios en 360°. Para hoteles boutique y apartahoteles que quieren más reservas directas.</p>
-            <p class="pcard__state">En desarrollo</p>
+            <p class="pcard__what">El huésped recorre el hotel antes de reservar: el edificio en 3D, cada piso, cada habitación y sus espacios en 360°, hasta la reserva. Para hoteles boutique y apartahoteles que quieren más reservas directas.</p>
+            <div class="pcard__foot">
+              <p class="pcard__state pcard__state--live">Demo en línea</p>
+              <a class="pcard__go" href="https://antesala-mauve.vercel.app" target="_blank" rel="noopener noreferrer">Ver la demo <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
-        <article class="pcard pcard--prodigia">
-          <svg class="pcard__stars" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="0" cy="0" r="0.6"/><circle cx="53" cy="97" r="1.1"/><circle cx="106" cy="194" r="1.6"/><circle cx="159" cy="31" r="0.6"/><circle cx="212" cy="128" r="1.1"/><circle cx="265" cy="225" r="1.6"/><circle cx="318" cy="62" r="0.6"/><circle cx="371" cy="159" r="1.1"/><circle cx="24" cy="256" r="1.6"/><circle cx="77" cy="93" r="0.6"/><circle cx="130" cy="190" r="1.1"/><circle cx="183" cy="27" r="1.6"/><circle cx="236" cy="124" r="0.6"/><circle cx="289" cy="221" r="1.1"/><circle cx="342" cy="58" r="1.6"/><circle cx="395" cy="155" r="0.6"/><circle cx="48" cy="252" r="1.1"/><circle cx="101" cy="89" r="1.6"/><circle cx="154" cy="186" r="0.6"/><circle cx="207" cy="23" r="1.1"/><circle cx="260" cy="120" r="1.6"/><circle cx="313" cy="217" r="0.6"/><circle cx="366" cy="54" r="1.1"/><circle cx="19" cy="151" r="1.6"/><circle cx="72" cy="248" r="0.6"/><circle cx="125" cy="85" r="1.1"/><circle cx="178" cy="182" r="1.6"/><circle cx="231" cy="19" r="0.6"/><circle cx="284" cy="116" r="1.1"/><circle cx="337" cy="213" r="1.6"/><circle cx="390" cy="50" r="0.6"/><circle cx="43" cy="147" r="1.1"/><circle cx="96" cy="244" r="1.6"/><circle cx="149" cy="81" r="0.6"/><circle cx="202" cy="178" r="1.1"/><circle cx="255" cy="15" r="1.6"/><circle cx="308" cy="112" r="0.6"/><circle cx="361" cy="209" r="1.1"/><circle cx="14" cy="46" r="1.6"/><circle cx="67" cy="143" r="0.6"/><circle cx="120" cy="240" r="1.1"/><circle cx="173" cy="77" r="1.6"/><circle cx="226" cy="174" r="0.6"/><circle cx="279" cy="11" r="1.1"/><circle cx="332" cy="108" r="1.6"/><circle cx="385" cy="205" r="0.6"/></svg>
+
+        <!-- Prodigia: noche, violeta y dorado -->
+        <article class="pcard pcard--prodigia pcard--link">
+          <svg class="pcard__stars" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><circle cx="53" cy="97" r="1.1"/><circle cx="106" cy="194" r="1.6"/><circle cx="159" cy="31" r="0.6"/><circle cx="212" cy="128" r="1.1"/><circle cx="265" cy="225" r="1.6"/><circle cx="318" cy="62" r="0.6"/><circle cx="371" cy="159" r="1.1"/><circle cx="24" cy="256" r="1.6"/><circle cx="77" cy="93" r="0.6"/><circle cx="130" cy="190" r="1.1"/><circle cx="183" cy="27" r="1.6"/><circle cx="236" cy="124" r="0.6"/><circle cx="289" cy="221" r="1.1"/><circle cx="342" cy="58" r="1.6"/><circle cx="395" cy="155" r="0.6"/><circle cx="48" cy="252" r="1.1"/><circle cx="101" cy="89" r="1.6"/><circle cx="154" cy="186" r="0.6"/><circle cx="207" cy="23" r="1.1"/><circle cx="260" cy="120" r="1.6"/><circle cx="313" cy="217" r="0.6"/><circle cx="366" cy="54" r="1.1"/><circle cx="19" cy="151" r="1.6"/><circle cx="72" cy="248" r="0.6"/><circle cx="125" cy="85" r="1.1"/><circle cx="178" cy="182" r="1.6"/><circle cx="231" cy="19" r="0.6"/><circle cx="284" cy="116" r="1.1"/><circle cx="337" cy="213" r="1.6"/><circle cx="390" cy="50" r="0.6"/><circle cx="43" cy="147" r="1.1"/><circle cx="96" cy="244" r="1.6"/><circle cx="149" cy="81" r="0.6"/><circle cx="202" cy="178" r="1.1"/><circle cx="255" cy="15" r="1.6"/><circle cx="308" cy="112" r="0.6"/><circle cx="361" cy="209" r="1.1"/><circle cx="14" cy="46" r="1.6"/><circle cx="67" cy="143" r="0.6"/><circle cx="120" cy="240" r="1.1"/><circle cx="173" cy="77" r="1.6"/><circle cx="226" cy="174" r="0.6"/><circle cx="279" cy="11" r="1.1"/><circle cx="332" cy="108" r="1.6"/><circle cx="385" cy="205" r="0.6"/></svg>
           <div class="pcard__body">
-            <p class="pcard__state pcard__state--live">Disponible en web</p>
-            <h3 class="pcard__name">Prodigia</h3>
-            <p class="pcard__line">Aprender jugando.</p>
-            <p class="pcard__what">15 mundos, retos de 10 preguntas y lecciones en español e inglés, para cualquier persona que quiera aprender.</p>
-            <a class="pcard__go" href="https://prodigia-sandy.vercel.app/es" target="_blank" rel="noopener noreferrer">Jugar en la web</a>
+            <div class="pcard__brand">
+              <svg class="pro-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <defs>
+                  <linearGradient id="proStar" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#A794FF"/><stop offset="50%" stop-color="#E4CBA0"/><stop offset="100%" stop-color="#FFC53D"/></linearGradient>
+                  <path id="proArm" d="M0,0 C-10,-9 -5,-27 0.5,-36 C4,-24 7,-8 0,0 Z"/>
+                </defs>
+                <circle cx="50" cy="50" r="34" fill="none" stroke="#7C5CFF" stroke-width="14" stroke-dasharray="158.6 55" stroke-dashoffset="27.5" transform="rotate(82 50 50)"/>
+                <g transform="translate(82 44) rotate(14)" fill="url(#proStar)">
+                  <use href="#proArm"/><use href="#proArm" transform="rotate(180) scale(0.33)"/><use href="#proArm" transform="rotate(84) scale(0.2)"/><use href="#proArm" transform="rotate(268) scale(0.15)"/>
+                </g>
+              </svg>
+              <h3 class="pcard__name">Prodigia</h3>
+            </div>
+            <p class="pcard__line">Estudia jugando.</p>
+            <p class="pcard__what">15 mundos (matemática, lógica, química, música, historia, programación y más) con retos de 10 preguntas contra el reloj que se adaptan a tu nivel, lecciones desde cero y un lado competitivo con duelos, rangos y ligas.</p>
+            <div class="pcard__foot">
+              <p class="pcard__state pcard__state--live">Disponible en web</p>
+              <a class="pcard__go" href="https://prodigia-sandy.vercel.app/es" target="_blank" rel="noopener noreferrer">Jugar ahora <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
+
+        <!-- Atria: obsidiana, violeta y turquesa -->
         <article class="pcard pcard--small pcard--atria">
-          <p class="pcard__state">Próximamente</p>
-          <h3 class="pcard__name">Atria</h3>
-          <p class="pcard__what">Una agenda personal con un asistente que organiza tus tareas y agenda tus compromisos.</p>
+          <div class="pcard__brand">
+            <img class="pcard__icon" src="assets/img/productos/atria-icono.svg" alt="" width="56" height="56" loading="lazy">
+            <h3 class="pcard__name">Atria</h3>
+          </div>
+          <p class="pcard__line">Tu agenda, con asistente propia.</p>
+          <p class="pcard__what">Agenda personal con una asistente de IA que desarrollamos nosotros. Le escribes lo que tienes pendiente y ella organiza tus tareas, agenda tus compromisos y te acompaña con hábitos, metas y enfoque.</p>
+          <p class="pcard__state">En desarrollo · app móvil</p>
         </article>
+
+        <!-- Velora: grafito, plata y blanco -->
         <article class="pcard pcard--small pcard--velora">
-          <p class="pcard__state">Próximamente</p>
-          <h3 class="pcard__name">Velora</h3>
-          <p class="pcard__what">Un launcher para tu celular.</p>
+          <div class="pcard__brand">
+            <img class="velora-logo" src="assets/img/productos/velora-logo.svg" alt="" width="252" height="74" loading="lazy">
+            <h3 class="pcard__name sr-only">Velora</h3>
+          </div>
+          <p class="pcard__line">Tu celular, sin ruido.</p>
+          <p class="pcard__what">Launcher minimalista para Android: una sola pantalla y tus apps en una lista vertical pensada para una mano. Ligero, rápido, sin anuncios y nada sale de tu teléfono.</p>
+          <p class="pcard__state">Próximamente · Android</p>
         </article>
+
+        <!-- Tino: claro, tinta y ciruela -->
         <article class="pcard pcard--small pcard--tino">
+          <div class="pcard__brand">
+            <img class="tino-logo" src="assets/img/productos/tino-logo.svg" alt="" width="380" height="200" loading="lazy">
+            <h3 class="pcard__name sr-only">Tino</h3>
+          </div>
+          <p class="pcard__line">Cada noche sabes si la plata cuadró.</p>
+          <p class="pcard__what">Para negocios con varios puntos de venta. Trae solos los reportes del día, cruza cada pago con lo que de verdad llegó, verifica las transferencias y te dice punto por punto qué no cuadró y por qué.</p>
           <p class="pcard__state">En desarrollo</p>
-          <h3 class="pcard__name"><img class="tino-logo" src="assets/img/productos/tino-logo.png" alt="Tino" width="440" height="217"></h3>
-          <p class="pcard__what">Facturación, conciliaciones y la gestión de tu empresa en un solo lugar. La usan también las empresas de la manada.</p>
         </article>
+
+        <!-- Impromptu: carbón, chasis y ámbar -->
+        <article class="pcard pcard--small pcard--impromptu">
+          <div class="pcard__brand">
+            <img class="pcard__icon" src="assets/img/productos/impromptu-icono.svg" alt="" width="56" height="56" loading="lazy">
+            <h3 class="pcard__name">impromptu</h3>
+          </div>
+          <p class="pcard__line">Videos de piano con notas cayendo.</p>
+          <p class="pcard__what">Conecta tu teclado MIDI, toca y exporta un video con tus manos, tus pedales y efectos de luz. Gratis, de código abierto y sin que tu música salga de tu computador.</p>
+          <p class="pcard__state">En desarrollo · gratis</p>
+        </article>
+
       </div>
     </div>
   </section>

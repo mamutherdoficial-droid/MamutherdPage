@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background squircle gradient (Deep obsidian to cosmic navy) -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121524" />
+      <stop offset="40%" stop-color="#0c0e18" />
+      <stop offset="100%" stop-color="#060810" />
+    </linearGradient>
+
+    <!-- Border highlight gradient -->
+    <linearGradient id="border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9a8fff" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#4ecdc4" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.1" />
+    </linearGradient>
+
+    <!-- Main Agenda 'A' Gradient (Adobe-inspired vibrant chromatic transition) -->
+    <linearGradient id="agenda-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="35%" stop-color="#6366f1" />
+      <stop offset="70%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+
+    <!-- Accent page leaf gradient -->
+    <linearGradient id="leaf-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4ecdc4" />
+      <stop offset="100%" stop-color="#a78bfa" />
+    </linearGradient>
+
+    <!-- Bookmark / Star Glow -->
+    <linearGradient id="star-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <!-- Soft ambient shadow -->
+    <filter id="glow-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#6366f1" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Adobe-style Rounded Squircle Base -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg-grad)" />
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="none" stroke="url(#border-grad)" stroke-width="4" />
+
+  <!-- Inner subtle grid lines representing calendar/agenda planner pages -->
+  <g opacity="0.12" stroke="#ffffff" stroke-width="2">
+    <line x1="120" y1="180" x2="392" y2="180" stroke-dasharray="8 8" />
+    <line x1="120" y1="240" x2="392" y2="240" stroke-dasharray="8 8" />
+    <line x1="120" y1="300" x2="392" y2="300" stroke-dasharray="8 8" />
+    <line x1="120" y1="360" x2="392" y2="360" stroke-dasharray="8 8" />
+  </g>
+
+  <!-- Iconic Agenda + 'At' Monogram Geometry -->
+  <g filter="url(#glow-shadow)">
+    <!-- Back agenda book page layer -->
+    <path d="M150 140 L340 140 C356 140 370 154 370 170 L370 360 C370 376 356 390 340 390 L150 390 Z" fill="rgba(255, 255, 255, 0.05)" rx="8" />
+
+    <!-- Left Leg of Agenda 'A' (Representing the Spine & Cover of the Agenda) -->
+    <path d="M168 376 L232 144 C236 130 250 120 264 120 C278 120 292 130 296 144 L360 376 C364 390 352 404 336 404 C324 404 314 396 310 384 L288 304 L228 304 L206 384 C202 396 192 404 180 404 C164 404 152 390 156 376 Z" fill="url(#agenda-grad)" />
+
+    <!-- Horizontal Planner Bridge of 'A' (Stylized schedule ribbon) -->
+    <path d="M222 284 L294 284 C302 284 308 278 308 270 C308 262 302 256 294 256 L222 256 C214 256 208 262 208 270 C208 278 214 284 222 284 Z" fill="#ffffff" opacity="0.95" />
+
+    <!-- Dynamic Turning Page / Focus Loop (Symbolizing productivity & daily agenda flow) -->
+    <path d="M256 172 L278 244 L234 244 Z" fill="url(#leaf-grad)" opacity="0.9" />
+
+    <!-- Golden Guiding Star of Atria (Navigation & clarity) -->
+    <circle cx="360" cy="152" r="22" fill="url(#star-grad)" />
+    <path d="M360 138 L363 148 L374 152 L363 156 L360 166 L357 156 L346 152 L357 148 Z" fill="#ffffff" />
+  </g>
+</svg>

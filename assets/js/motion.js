@@ -255,11 +255,6 @@
       revealTitle(one('h2', products), {}, calm);
       fadeUp(one('.products__head p', products), products, null, calm);
       fadeUp($('.pcard', products), one('.pgrid', products), { y: calm ? 0 : 50, stagger: 0.12 }, calm);
-      var photo = one('.pcard--antesala .ant-scene', products);
-      if (photo && !calm) {
-        gsap.fromTo(photo, { scale: 1.12 }, { scale: 1, ease: 'none',
-          scrollTrigger: { trigger: one('.pcard--antesala', products), start: 'top bottom', end: 'bottom top', scrub: true } });
-      }
     }
 
     /* Preguntas frecuentes */

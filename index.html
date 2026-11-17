@@ -1,0 +1,523 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mamut Herd</title>
+<style>:root{color-scheme:light} body{background:#EEF3F6}</style>
+<meta name="description" content="Mamut Herd crea productos digitales propios y ayuda a empresas pequeñas a volverse grandes con tecnología, marca y herramientas compartidas.">
+<meta name="theme-color" content="#0F1E2E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Mamut Herd — De cría a mamut">
+<meta property="og:description" content="Creamos productos digitales propios y ayudamos a empresas pequeñas a volverse grandes.">
+<meta property="og:image" content="assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/icono.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/unbounded-800.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-var.woff" as="font" type="font/woff" crossorigin>
+<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/early.js"></script>
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/SplitText.min.js" defer></script>
+<script src="assets/js/vendor/ScrollToPlugin.min.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/travel.js" defer></script>
+
+<!-- Símbolos reutilizables: el mamut completo y la "m" -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="mamut" viewBox="28 10 276 200.5">
+    <path class="fg" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+    <path class="fg" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+    <path class="line" d="M52 118 C40 126 38 142 44 154"/>
+    <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+    <path class="fg" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+    <path class="cut ear" d="M186 62 C174 78 178 100 194 106"/>
+    <circle class="hole" cx="220" cy="78" r="5"/>
+    <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+    <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+  </symbol>
+  <symbol id="m-mark" viewBox="22 18 230 182">
+    <path class="fg" d="M30 180 L30 104 C30 76 52 58 80 58 C98 58 110 66 118 76 C128 50 142 40 158 38 C160 32 163 28 168 25 C168 31 169 35 172 38 C194 42 206 60 206 88 L206 174 C206 188 194 194 186 186 C182 182 180 178 180 170 L180 104 C180 92 170 84 158 84 C146 84 135 92 135 104 L135 180 L105 180 L105 110 C105 98 96 90 84 90 C70 90 60 98 60 110 L60 180 Z"/>
+    <circle class="hole" cx="184" cy="62" r="6"/>
+    <path class="cut m-halo" d="M190 104 C192 146 226 160 238 132 C244 116 240 102 230 96"/>
+    <path class="tusk m-tusk" d="M190 104 C192 146 226 160 238 132 C244 116 240 102 230 96"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="top on-ice">
+  <div class="wrap top__row">
+    <a class="brand" href="#inicio" aria-label="Mamut Herd, inicio">
+      <svg class="brand__mamut mamut" viewBox="28 10 276 200.5" aria-hidden="true"><use href="#mamut"/></svg>
+      <span class="brand__name">Mamut Herd</span>
+    </a>
+    <button class="sound-btn" type="button" aria-pressed="true" aria-label="Silenciar el sonido de navegación">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sb-horn" d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="sb-wave" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path class="sb-wave" d="M18.2 6.5a7.8 7.8 0 0 1 0 11"/><path class="sb-mute" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+    </button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">
+      <span class="menu-btn__label">Menú</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="bar bar--1" d="M4 8h16"/><path class="bar bar--2" d="M4 16h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#productos">Productos</a>
+      <a href="#manada">La Manada</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="marca.html">Marca</a>
+      <a class="nav__cta" href="#unirse">Únete a la manada</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- Inicio -->
+  <section class="hero on-ice" id="inicio">
+    <div class="wrap hero__grid">
+      <h1 class="hero__title">De cría<br>a mamut.</h1>
+      <div class="hero__text">
+        <p class="hero__lead">Creamos productos digitales propios y ayudamos a empresas pequeñas a volverse grandes, con la tecnología, la marca y las herramientas que construimos para nosotros.</p>
+        <div class="actions">
+          <a class="btn btn--ink" href="#unirse">Únete a la manada</a>
+          <a class="btn btn--line" href="#productos">Ver productos</a>
+        </div>
+      </div>
+      <div class="hero__mamut">
+        <svg class="mamut walker hero__walker" viewBox="26 10 290 202" role="img" aria-label="El mamut de Mamut Herd">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg>
+      </div>
+    </div>
+    <svg class="peaks peaks--hero" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 220 L0 150 L120 96 L210 140 L330 52 L450 128 L560 84 L680 150 L800 70 L930 132 L1050 60 L1180 140 L1300 92 L1440 150 L1440 220 Z"/></svg>
+    <div class="ground" aria-hidden="true"></div>
+  </section>
+
+  <!-- El invierno: la cría sola, luego llega la manada -->
+  <section class="winter on-ink" id="historia" aria-labelledby="winter-a">
+    <div class="winter__stage">
+      <img class="winter__photo ext-img" src="assets/img/invierno.jpg" alt="" aria-hidden="true" width="1536" height="864" loading="lazy">
+      <div class="winter__glow" aria-hidden="true"></div>
+      <canvas class="winter__snow" aria-hidden="true"></canvas>
+      <svg class="peaks peaks--far" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true"><path d="M0 260 L0 170 L90 120 L200 160 L320 60 L430 140 L540 96 L660 170 L790 40 L900 130 L1010 90 L1140 160 L1260 70 L1360 130 L1440 100 L1440 260 Z"/></svg>
+      <svg class="peaks peaks--near" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><path d="M0 200 L0 130 L140 70 L260 120 L380 80 L520 140 L640 100 L760 150 L900 90 L1040 140 L1160 76 L1300 128 L1440 96 L1440 200 Z"/></svg>
+      <div class="wrap winter__copy">
+        <h2 class="winter__a" id="winter-a">Una empresa pequeña sola no sobrevive al invierno.</h2>
+        <div class="winter__b">
+          <h2>En manada, sí.</h2>
+          <p>Mamut Herd junta empresas pequeñas para que crezcan juntas, compartiendo tecnología, marca y clientes.</p>
+        </div>
+      </div>
+      <div class="winter__scene" aria-hidden="true">
+        <div class="winter__walker winter__walker--a"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+        <div class="winter__walker winter__walker--calf"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+        <div class="winter__walker winter__walker--b"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+      </div>
+      <div class="ground ground--ice" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Qué hacemos -->
+  <section class="about on-ice" id="que-hacemos">
+    <div class="wrap">
+      <h2 class="about__title">Mamut Herd es esa manada.</h2>
+      <div class="about__cols">
+        <div>
+          <h3>Productos propios</h3>
+          <p>Diseñamos y construimos nuestras propias apps y plataformas. Son nuestro negocio y también nuestro laboratorio: lo que aprendemos ahí lo usa toda la manada.</p>
+        </div>
+        <div>
+          <h3>La Manada</h3>
+          <p>Aceptamos empresas pequeñas de cualquier sector que ya tienen un producto. Conservan su nombre y su marca. Nosotros ponemos tecnología, diseño, herramientas y contactos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos: cada uno con su propia identidad -->
+  <section class="products on-glaciar" id="productos">
+    <div class="wrap">
+      <div class="products__head">
+        <h2>Lo que estamos construyendo</h2>
+        <p>Cada producto tiene su propia marca. Todos salen de la misma manada.</p>
+      </div>
+      <div class="pgrid">
+        <article class="pcard pcard--antesala">
+          <figure class="pcard__media">
+            <svg class="ant-scene" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="antCeil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1224"/><stop offset="1" stop-color="#16223F"/></linearGradient>
+                <linearGradient id="antFloor" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0B1224"/><stop offset="1" stop-color="#1A2848"/></linearGradient>
+                <linearGradient id="antWallL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0D1528"/><stop offset="1" stop-color="#1C2B4C"/></linearGradient>
+                <linearGradient id="antWallR" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0D1528"/><stop offset="1" stop-color="#1C2B4C"/></linearGradient>
+                <linearGradient id="antSpill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2E8D6" stop-opacity=".55"/><stop offset="1" stop-color="#D2B88C" stop-opacity="0"/></linearGradient>
+                <radialGradient id="antGlow"><stop offset="0" stop-color="#F2E8D6" stop-opacity=".6"/><stop offset="1" stop-color="#F2E8D6" stop-opacity="0"/></radialGradient>
+                <radialGradient id="antSconce"><stop offset="0" stop-color="#D2B88C" stop-opacity=".55"/><stop offset="1" stop-color="#D2B88C" stop-opacity="0"/></radialGradient>
+              </defs>
+              <rect width="400" height="500" fill="#111B33"/>
+              <path d="M0 0H400L250 170H150Z" fill="url(#antCeil)"/>
+              <path d="M0 500H400L250 360H150Z" fill="url(#antFloor)"/>
+              <path d="M0 0L150 170V360L0 500Z" fill="url(#antWallL)"/>
+              <path d="M400 0L250 170V360L400 500Z" fill="url(#antWallR)"/>
+              <rect x="150" y="170" width="100" height="190" fill="#16223F"/>
+              <path d="M40 120L92 172V392L40 447Z" fill="#0B1224" opacity=".7"/>
+              <path d="M108 189L132 213V376L108 399Z" fill="#0B1224" opacity=".7"/>
+              <path d="M360 120L308 172V392L360 447Z" fill="#0B1224" opacity=".7"/>
+              <path d="M292 189L268 213V376L292 399Z" fill="#0B1224" opacity=".7"/>
+              <circle cx="22" cy="150" r="30" fill="url(#antSconce)"/><circle cx="100" cy="200" r="16" fill="url(#antSconce)"/>
+              <circle cx="378" cy="150" r="30" fill="url(#antSconce)"/><circle cx="300" cy="200" r="16" fill="url(#antSconce)"/>
+              <rect x="176" y="232" width="48" height="128" fill="#0B1224" stroke="#957C55" stroke-width="1.5"/>
+              <path d="M198 360L202 360L262 500H138Z" fill="url(#antSpill)"/>
+              <circle cx="200" cy="296" r="46" fill="url(#antGlow)"/>
+              <rect class="ant-scene__slit" x="198.6" y="234" width="2.8" height="126" fill="#F2E8D6"/>
+            </svg>
+            <img class="ext-img" src="assets/img/antesala-pasillo.jpg" alt="Pasillo de hotel en penumbra con una puerta entreabierta que deja salir una línea de luz" width="1024" height="1280" loading="lazy">
+            <figcaption>Imagen ilustrativa</figcaption>
+          </figure>
+          <div class="pcard__body">
+            <div class="ant-logo">
+              <svg viewBox="14 8 92 136" aria-hidden="true"><path d="M30 140V44L44 16V140Z" fill="#D2B88C"/><path d="M90 140V44L76 16V140Z" fill="#D2B88C"/><path d="M44 16L48 22V137L44 140Z" fill="#957C55"/><path d="M76 16L72 22V137L76 140Z" fill="#957C55"/><path d="M20 140V64L24 57V140Z" fill="#D2B88C"/><path d="M100 140V64L96 57V140Z" fill="#D2B88C"/><rect x="58.6" y="30" width="2.8" height="110" fill="#F2E8D6"/></svg>
+              <h3 class="pcard__name">Antesala</h3>
+            </div>
+            <p class="pcard__line">Explora el hotel antes de llegar.</p>
+            <p class="pcard__what">El huésped recorre el hotel antes de reservar: el edificio en 3D, cada piso, cada habitación y sus espacios en 360°. Para hoteles boutique y apartahoteles que quieren más reservas directas.</p>
+            <p class="pcard__state">En desarrollo</p>
+          </div>
+        </article>
+        <article class="pcard pcard--prodigia">
+          <svg class="pcard__stars" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="0" cy="0" r="0.6"/><circle cx="53" cy="97" r="1.1"/><circle cx="106" cy="194" r="1.6"/><circle cx="159" cy="31" r="0.6"/><circle cx="212" cy="128" r="1.1"/><circle cx="265" cy="225" r="1.6"/><circle cx="318" cy="62" r="0.6"/><circle cx="371" cy="159" r="1.1"/><circle cx="24" cy="256" r="1.6"/><circle cx="77" cy="93" r="0.6"/><circle cx="130" cy="190" r="1.1"/><circle cx="183" cy="27" r="1.6"/><circle cx="236" cy="124" r="0.6"/><circle cx="289" cy="221" r="1.1"/><circle cx="342" cy="58" r="1.6"/><circle cx="395" cy="155" r="0.6"/><circle cx="48" cy="252" r="1.1"/><circle cx="101" cy="89" r="1.6"/><circle cx="154" cy="186" r="0.6"/><circle cx="207" cy="23" r="1.1"/><circle cx="260" cy="120" r="1.6"/><circle cx="313" cy="217" r="0.6"/><circle cx="366" cy="54" r="1.1"/><circle cx="19" cy="151" r="1.6"/><circle cx="72" cy="248" r="0.6"/><circle cx="125" cy="85" r="1.1"/><circle cx="178" cy="182" r="1.6"/><circle cx="231" cy="19" r="0.6"/><circle cx="284" cy="116" r="1.1"/><circle cx="337" cy="213" r="1.6"/><circle cx="390" cy="50" r="0.6"/><circle cx="43" cy="147" r="1.1"/><circle cx="96" cy="244" r="1.6"/><circle cx="149" cy="81" r="0.6"/><circle cx="202" cy="178" r="1.1"/><circle cx="255" cy="15" r="1.6"/><circle cx="308" cy="112" r="0.6"/><circle cx="361" cy="209" r="1.1"/><circle cx="14" cy="46" r="1.6"/><circle cx="67" cy="143" r="0.6"/><circle cx="120" cy="240" r="1.1"/><circle cx="173" cy="77" r="1.6"/><circle cx="226" cy="174" r="0.6"/><circle cx="279" cy="11" r="1.1"/><circle cx="332" cy="108" r="1.6"/><circle cx="385" cy="205" r="0.6"/></svg>
+          <div class="pcard__body">
+            <p class="pcard__state pcard__state--live">Disponible en web</p>
+            <h3 class="pcard__name">Prodigia</h3>
+            <p class="pcard__line">Aprender jugando.</p>
+            <p class="pcard__what">15 mundos, retos de 10 preguntas y lecciones en español e inglés, para cualquier persona que quiera aprender.</p>
+            <a class="pcard__go" href="https://prodigia-sandy.vercel.app/es" target="_blank" rel="noopener noreferrer">Jugar en la web</a>
+          </div>
+        </article>
+        <article class="pcard pcard--small pcard--atria">
+          <p class="pcard__state">Próximamente</p>
+          <h3 class="pcard__name">Atria</h3>
+          <p class="pcard__what">Una agenda personal con un asistente que organiza tus tareas y agenda tus compromisos.</p>
+        </article>
+        <article class="pcard pcard--small pcard--velora">
+          <p class="pcard__state">Próximamente</p>
+          <h3 class="pcard__name">Velora</h3>
+          <p class="pcard__what">Un launcher para tu celular.</p>
+        </article>
+        <article class="pcard pcard--small pcard--tino">
+          <p class="pcard__state">En desarrollo</p>
+          <h3 class="pcard__name"><img class="tino-logo" src="assets/img/productos/tino-logo.png" alt="Tino" width="440" height="217"></h3>
+          <p class="pcard__what">Facturación, conciliaciones y la gestión de tu empresa en un solo lugar. La usan también las empresas de la manada.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- La Manada: de cría a mamut -->
+  <section class="grow on-ink" id="manada">
+    <div class="grow__stage">
+      <div class="wrap grow__inner">
+        <div class="grow__text">
+          <h2>Tres tamaños, una manada</h2>
+          <ol class="levels">
+            <li class="level is-active" data-level="0">
+              <h3>Cría</h3>
+              <p>Recién empiezas. Recibes marca, formación y tus primeras herramientas.</p>
+            </li>
+            <li class="level" data-level="1">
+              <h3>Joven</h3>
+              <p>Ya vendes de forma constante. Entras a tecnología a la medida y compras en volumen.</p>
+            </li>
+            <li class="level" data-level="2">
+              <h3>Mamut</h3>
+              <p>Ya eres grande. Ayudas a las crías y puedes volverte socio.</p>
+            </li>
+          </ol>
+        </div>
+        <div class="grow__scene" aria-hidden="true">
+          <div class="grow__herd">
+            <div class="grow__member grow__member--cria is-on"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+            <div class="grow__member grow__member--joven"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+            <div class="grow__member grow__member--mamut"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="ground ground--ice" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Qué recibe un asociado -->
+  <section class="gets on-ice" id="asociados">
+    <div class="wrap gets__grid">
+      <div class="gets__head">
+        <h2>Lo que recibe una empresa de la manada</h2>
+        <div class="seal" role="img" aria-label="Sello: Miembro de Mamut Herd">
+          <span class="seal__top" aria-hidden="true">Miembro</span>
+          <svg class="mamut" viewBox="28 10 276 200.5" aria-hidden="true"><use href="#mamut"/></svg>
+          <span class="seal__name" aria-hidden="true">Mamut Herd</span>
+        </div>
+      </div>
+      <dl class="gets__list">
+        <div>
+          <dt>Tecnología</dt>
+          <dd>Página web, tienda en línea, automatizaciones y apps hechas por el mismo equipo que construye nuestros productos.</dd>
+        </div>
+        <div>
+          <dt>Marca y diseño</dt>
+          <dd>Logo, empaque y redes sociales para que tu producto se vea a la altura de lo que es.</dd>
+        </div>
+        <div>
+          <dt>Herramientas Mamut</dt>
+          <dd>Acceso con descuento a lo que construimos: Tino para la administración y Atria para organizarte.</dd>
+        </div>
+        <div>
+          <dt>Red</dt>
+          <dd>Clientes, proveedores y contactos que comparten las demás empresas de la manada.</dd>
+        </div>
+        <div>
+          <dt>Respaldo</dt>
+          <dd>El sello «Miembro de Mamut Herd» para tu web, tus facturas, tus empaques y tu vitrina.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes -->
+  <section class="faq on-ice" id="preguntas">
+    <div class="wrap faq__grid">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq__list">
+        <details>
+          <summary>¿Qué empresas pueden unirse?</summary>
+          <p>Empresas pequeñas de cualquier sector que ya tienen un producto que se vende o está listo para venderse.</p>
+        </details>
+        <details>
+          <summary>¿Tengo que cambiar mi marca?</summary>
+          <p>No. Conservas tu nombre, tu marca y tu empresa. Mamut aparece solo como el sello de miembro.</p>
+        </details>
+        <details>
+          <summary>¿Trabajan con empresas de otros países?</summary>
+          <p>Sí. Casi todo el trabajo es digital, así que podemos acompañar empresas desde cualquier país.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto cuesta?</summary>
+          <p>Hay una membresía mensual y servicios que se cobran aparte, como una página web o una marca. El valor depende de lo que necesite tu empresa: escríbenos y te lo contamos.</p>
+        </details>
+        <details>
+          <summary>¿Cómo empiezo?</summary>
+          <p>Escríbenos por WhatsApp o por correo y cuéntanos qué vendes. Revisamos juntos si encajas y por dónde empezar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unirse -->
+  <section class="join on-amber" id="unirse">
+    <div class="wrap join__grid">
+      <div>
+        <h2>¿Tienes un producto y quieres crecer?</h2>
+        <p class="join__lead">Buscamos empresas pequeñas con un producto que ya se vende o está listo para venderse.</p>
+        <div class="actions">
+          <a class="btn btn--ink" href="https://wa.me/573204871882?text=Hola%2C%20quiero%20saber%20c%C3%B3mo%20unirme%20a%20la%20manada." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          <a class="btn btn--line" href="mailto:mamutherdoficial@gmail.com?subject=Quiero%20unirme%20a%20la%20manada">Enviar un correo</a>
+        </div>
+      </div>
+      <ol class="steps">
+        <li><h3>Escríbenos</h3><p>Cuéntanos qué vendes y en qué punto está tu empresa.</p></li>
+        <li><h3>Lo revisamos juntos</h3><p>Vemos si encajas en la manada y qué necesitas primero.</p></li>
+        <li><h3>Empiezas como cría</h3><p>Con un plan claro para llegar a mamut.</p></li>
+      </ol>
+    </div>
+    <div class="parade" aria-hidden="true">
+      <div class="parade__track">
+        <div class="parade__m parade__m--s"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+        <div class="parade__m parade__m--m"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+        <div class="parade__m parade__m--l"><svg class="mamut walker " viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg></div>
+      </div>
+      <div class="ground" aria-hidden="true"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot on-ink">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <svg class="mamut walker foot__walker" viewBox="26 10 290 202" aria-hidden="true">
+            <path class="fg far leg-fb" data-o="83 164" d="M64 160 H102 V202 Q102 210 94 210 H72 Q64 210 64 202 Z"/>
+            <path class="fg far leg-ff" data-o="193 164" d="M174 160 H212 V202 Q212 210 204 210 H182 Q174 210 174 202 Z"/>
+            <path class="fg leg-nb" data-o="71 164" d="M52 160 H90 V202 Q90 210 82 210 H60 Q52 210 52 202 Z"/>
+            <path class="fg leg-nf" data-o="181 164" d="M162 160 H200 V202 Q200 210 192 210 H170 Q162 210 162 202 Z"/>
+            <g class="w-top">
+              <path class="line w-tail" d="M52 118 C40 126 38 142 44 154"/>
+              <path class="fg" d="M50 178 C42 150 46 118 62 98 C84 72 114 58 142 60 C153 61 160 66 166 73 C170 49 184 35 200 32 C202 26 205 22 210 19 C210 25 211 30 214 34 C239 44 249 76 239 106 C235 122 222 134 210 138 C202 146 200 158 200 172 L200 178 L162 178 L151 192 L140 178 L129 192 L118 178 L107 192 L96 178 Z"/>
+              <path class="fg w-trunk" d="M239 96 C245 128 253 160 245 187 C241 198 231 203 223 200 C216 197 216 189 221 183 C228 174 227 160 221 150 C215 140 210 136 204 130 L214 96 Z"/>
+              <path class="cut ear w-ear" d="M186 62 C174 78 178 100 194 106"/>
+              <circle class="hole w-eye" cx="220" cy="78" r="5"/>
+              <path class="cut halo" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+              <path class="tusk" d="M212 130 C214 178 268 206 286 162 C294 140 288 118 274 108"/>
+            </g>
+          </svg>
+      <p class="foot__name">Mamut Herd S.A.S.</p>
+      <p class="foot__tag">La manada de empresas</p>
+    </div>
+    <nav class="foot__nav" aria-label="Pie de página">
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#productos">Productos</a>
+      <a href="#manada">La Manada</a>
+      <a href="marca.html">Marca y logos</a>
+      <a href="#unirse">Únete a la manada</a>
+    </nav>
+    <div class="foot__contact">
+      <a href="https://wa.me/573204871882" target="_blank" rel="noopener noreferrer">WhatsApp 320 487 1882</a>
+      <a href="mailto:mamutherdoficial@gmail.com">mamutherdoficial@gmail.com</a>
+    </div>
+  </div>
+  <div class="wrap foot__legal">
+    <p>© 2026 Mamut Herd S.A.S. Colombia.</p>
+  </div>
+</footer>
+
+
+</body></html>

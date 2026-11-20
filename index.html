@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-intro>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -31,6 +31,60 @@
 <script src="assets/js/travel.js" defer></script>
 </head>
 <body>
+
+<!-- Intro del logo: el fondo ya está en pantalla desde el primer pintado
+     (html.is-intro, ver early.js); el video arranca encima y, cuando el logo
+     termina de armarse, todo se funde hacia la página. Tocar la salta. -->
+<div class="intro" aria-hidden="true"><video class="intro__video" muted playsinline preload="auto" disablepictureinpicture></video></div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var box = document.querySelector('div.intro');
+  var video = box.querySelector('video');
+  var resolveDone;
+  var api = window.mamutIntro = { started: false, done: new Promise(function (r) { resolveDone = r; }) };
+  if (!root.classList.contains('is-intro')) { api.started = true; resolveDone(); box.parentNode.removeChild(box); return; }
+
+  var FADE_AT = 2.1;                 /* segundo del video en que el logo ya está completo */
+  var EASE = 'cubic-bezier(.4, 0, .2, 1)';
+  var SKIP = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+  var timers = [];
+  function later(fn, ms) { timers.push(window.setTimeout(fn, ms)); }
+  function skip() { leave(true); }
+
+  function finish() {
+    root.classList.remove('is-intro');
+    video.pause(); video.removeAttribute('src'); video.load();
+    if (box.parentNode) box.parentNode.removeChild(box);
+  }
+  function leave(fast) {
+    if (api.started) return;
+    api.started = true;
+    timers.forEach(window.clearTimeout);
+    SKIP.forEach(function (t) { window.removeEventListener(t, skip, true); });
+    window.setTimeout(resolveDone, fast ? 0 : 200);   /* la portada empieza a entrar mientras se funde */
+    if (typeof box.animate !== 'function') { finish(); return; }
+    video.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.04)' }],
+      { duration: fast ? 350 : 700, easing: EASE, fill: 'forwards' });
+    box.animate([{ opacity: 1 }, { opacity: 0 }],
+      { duration: fast ? 500 : 1000, delay: fast ? 100 : 250, easing: EASE, fill: 'forwards' }).onfinish = finish;
+  }
+
+  SKIP.forEach(function (t) { window.addEventListener(t, skip, { capture: true, passive: true }); });
+  video.addEventListener('playing', function () {
+    later(function () { leave(false); }, Math.max(0, (FADE_AT - video.currentTime) * 1000));
+  }, { once: true });
+  video.addEventListener('ended', function () { leave(false); });
+  video.addEventListener('error', function () { leave(false); });
+  later(function () { if (video.paused || video.currentTime === 0) leave(false); }, 1500);   /* no arrancó a tiempo */
+  later(function () { leave(false); }, 6000);                                                /* tope */
+
+  var tall = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+  video.src = 'assets/marca/intro/mamut-herd-intro-' + (tall ? 'vertical' : 'horizontal') + '-oscuro.mp4';
+  var p = video.play();
+  if (p && p.catch) p.catch(function () { leave(false); });
+})();
+</script>
 
 <!-- Símbolos reutilizables: el mamut completo y la "m" -->
 <svg class="sprite" aria-hidden="true" focusable="false">

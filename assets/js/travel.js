@@ -13,7 +13,8 @@
   'use strict';
   var KEY = 'mamut-sonido';
   var FLAG = 'mamut-puerta';
-  var CLOSE_MS = 480, LATCH_MS = 300, UNLATCH_MS = 220, HOLD_MS = 140, OPEN_MS = 640;
+  var CLOSE_MS = 600, LATCH_MS = 300, UNLATCH_MS = 220, HOLD_MS = 140, OPEN_MS = 720;
+  var MASTER = 1;   /* volumen general de los sonidos (el limitador evita que distorsione) */
   var script = document.currentScript;
   var sealSrc = new URL('../marca/sello-miembro-color.svg', script ? script.src : window.location.href).href;
 
@@ -37,41 +38,36 @@
     });
   }
 
-  /* ---------- Sonidos: puerta de bóveda ----------
-     Hojas de acero que ruedan por su riel, un golpe con cuerpo y eco de
-     cámara, la rueda del broche con su trinquete y tres pernos que se
-     traban. Al abrir, los pernos se sueltan y la junta deja escapar aire. */
-  var ac = null, noise = null, white = null, out = null, room = null;
+  /* ---------- Sonidos: puerta pesada de metal ----------
+     Todo sale de ruido filtrado, sin tonos de sintetizador: las hojas se
+     arrastran por el riel con fricción irregular, chocan con un golpe grave
+     que hace resonar el acero, y el broche se traba con un "ka-chunk". */
+  var ac = null, white = null, out = null, room = null;
   function audio() {
     if (ac) return ac;
     var Ctx = window.AudioContext || window.webkitAudioContext;
     if (!Ctx) return null;
     ac = new Ctx();
     var len = Math.floor(ac.sampleRate * 2);
-    noise = ac.createBuffer(1, len, ac.sampleRate);   /* ruido "café": grave, para el peso */
-    white = ac.createBuffer(1, len, ac.sampleRate);   /* ruido blanco: para el aire de la junta */
-    var d = noise.getChannelData(0), w = white.getChannelData(0), last = 0;
-    for (var i = 0; i < len; i++) {
-      var r = Math.random() * 2 - 1;
-      w[i] = r;
-      last = (last + 0.02 * r) / 1.02;
-      d[i] = last * 3.2;
-    }
-    /* Todo pasa por un compresor para que el golpe pese sin saturar */
+    white = ac.createBuffer(1, len, ac.sampleRate);
+    var w = white.getChannelData(0);
+    for (var i = 0; i < len; i++) w[i] = Math.random() * 2 - 1;
+    /* Limitador al final: permite subir el volumen sin que distorsione */
     var comp = ac.createDynamicsCompressor();
-    comp.threshold.value = -16; comp.knee.value = 10; comp.ratio.value = 5;
-    comp.attack.value = 0.002; comp.release.value = 0.3;
-    comp.connect(ac.destination);
-    out = ac.createGain(); out.gain.value = 0.9; out.connect(comp);
-    /* Eco de una cámara grande de concreto y metal */
-    var rlen = Math.floor(ac.sampleRate * 1.6), ir = ac.createBuffer(2, rlen, ac.sampleRate);
+    comp.threshold.value = -3; comp.knee.value = 2; comp.ratio.value = 12;
+    comp.attack.value = 0.001; comp.release.value = 0.25;
+    var master = ac.createGain(); master.gain.value = MASTER;
+    comp.connect(master); master.connect(ac.destination);
+    out = ac.createGain(); out.gain.value = 1; out.connect(comp);
+    /* Eco de un recinto grande de concreto */
+    var rlen = Math.floor(ac.sampleRate * 1.4), ir = ac.createBuffer(2, rlen, ac.sampleRate);
     for (var c = 0; c < 2; c++) {
       var ch = ir.getChannelData(c);
-      for (var j = 0; j < rlen; j++) ch[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / rlen, 3.2);
+      for (var j = 0; j < rlen; j++) ch[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / rlen, 4);
     }
     var conv = ac.createConvolver(); conv.buffer = ir;
-    var dark = ac.createBiquadFilter(); dark.type = 'lowpass'; dark.frequency.value = 2400;
-    room = ac.createGain(); room.gain.value = 0.32;
+    var dark = ac.createBiquadFilter(); dark.type = 'lowpass'; dark.frequency.value = 1500;
+    room = ac.createGain(); room.gain.value = 0.3;
     room.connect(dark); dark.connect(conv); conv.connect(comp);
     return ac;
   }
@@ -85,100 +81,118 @@
     node.connect(out);
     if (wet) { var s = ac.createGain(); s.gain.value = wet; node.connect(s); s.connect(room); }
   }
-  function env(param, t, peak, attack, decay) {
-    param.setValueAtTime(0.0001, t);
-    param.exponentialRampToValueAtTime(peak, t + attack);
-    param.exponentialRampToValueAtTime(0.0001, t + attack + decay);
+  function filter(type, freq, q, gain) {
+    var f = ac.createBiquadFilter(); f.type = type; f.frequency.value = freq;
+    if (q != null) f.Q.value = q;
+    if (gain != null) f.gain.value = gain;
+    return f;
   }
-  function hit(t, o) {        /* ráfaga corta de ruido filtrado */
-    var a = o.attack || 0.003;
-    var src = ac.createBufferSource(); src.buffer = o.white ? white : noise;
-    var f = ac.createBiquadFilter(); f.type = o.type || 'bandpass'; f.frequency.value = o.freq; f.Q.value = o.q || 1;
-    var g = ac.createGain(); env(g.gain, t, o.peak, a, o.decay);
-    src.connect(f); f.connect(g); bus(g, o.wet);
-    src.start(t, Math.random()); src.stop(t + a + o.decay + 0.05);
+  /* Ruido de fricción: grave, con tirones irregulares (pega y suelta) */
+  function dragBuffer(seconds) {
+    var sr = ac.sampleRate, n = Math.floor(sr * seconds);
+    var b = ac.createBuffer(1, n, sr), d = b.getChannelData(0);
+    var brown = 0, rough = 0.7, target = 0.7, next = 0, slip = 0;
+    for (var i = 0; i < n; i++) {
+      var r = Math.random() * 2 - 1;
+      brown = (brown + 0.05 * r) / 1.05;
+      if (i >= next) {
+        target = 0.3 + Math.random() * 0.7;
+        next = i + Math.floor(sr * (0.01 + Math.random() * 0.035));
+        if (Math.random() < 0.1) slip = 1;
+      }
+      rough += (target - rough) * 0.003;
+      slip *= 0.9992;
+      d[i] = (brown * 3.4 + r * 0.05) * rough * (1 + slip * 1.6);
+    }
+    return b;
   }
-  function tone(t, o) {       /* tono con caída de afinación opcional */
-    var a = o.attack || 0.004;
-    var osc = ac.createOscillator(); osc.type = o.type || 'sine';
-    osc.frequency.setValueAtTime(o.from, t);
-    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + a + o.decay);
-    var g = ac.createGain(); env(g.gain, t, o.peak, a, o.decay);
-    osc.connect(g); bus(g, o.wet);
-    osc.start(t); osc.stop(t + a + o.decay + 0.05);
+  /* Un golpe que hace resonar placas de acero: ruido corto por filtros muy cerrados */
+  function strike(t, level, modes, wet) {
+    var src = ac.createBufferSource(); src.buffer = white;
+    var g = ac.createGain();
+    g.gain.setValueAtTime(level, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.02);
+    src.connect(g);
+    modes.forEach(function (m) {
+      var f = filter('bandpass', m[0], m[1]);
+      var mg = ac.createGain(); mg.gain.value = m[2];
+      g.connect(f); f.connect(mg); bus(mg, wet);
+    });
+    src.start(t, Math.random()); src.stop(t + 0.05);
   }
-  /* Las hojas pesadas rodando sobre su riel */
-  function slideSound(delay, seconds, closing) {
+  /* Golpe sordo: ruido grave con caída */
+  function thump(t, level, freq, decay, wet) {
+    var src = ac.createBufferSource(); src.buffer = white;
+    var f = filter('lowpass', freq, 1.2);
+    var f2 = filter('lowpass', freq * 1.5, 0.7);
+    var g = ac.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(level, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+    src.connect(f); f.connect(f2); f2.connect(g); bus(g, wet);
+    src.start(t, Math.random()); src.stop(t + decay + 0.05);
+  }
+  /* Las hojas pesadas arrastrándose por el riel */
+  function dragSound(delay, seconds, closing) {
     var ctx = ready(); if (!ctx) return;
     var t = ctx.currentTime + delay, dur = seconds;
-    var src = ctx.createBufferSource(); src.buffer = noise;
-    var low = ctx.createBiquadFilter(); low.type = 'lowpass'; low.Q.value = 0.9;
-    low.frequency.setValueAtTime(closing ? 110 : 260, t);
-    low.frequency.exponentialRampToValueAtTime(closing ? 260 : 100, t + dur);
+    var src = ctx.createBufferSource(); src.buffer = dragBuffer(dur + 0.3);
+    var low = filter('lowpass', closing ? 420 : 700, 0.7);
+    low.frequency.setValueAtTime(closing ? 420 : 700, t);
+    low.frequency.linearRampToValueAtTime(closing ? 700 : 380, t + dur);
+    var body = filter('peaking', 120, 1.1, 9);    /* peso */
+    var grit = filter('peaking', 420, 2, 4);      /* roce de metal */
     var g = ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(closing ? 0.9 : 0.75, t + dur * (closing ? 0.9 : 0.3));
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur + (closing ? 0.02 : 0.25));
-    src.connect(low); low.connect(g); bus(g, 0.15);
-    src.start(t, Math.random() * 0.7); src.stop(t + dur + 0.3);
-    /* Rodamientos: un chirrido grave de metal que tiembla */
-    var src2 = ctx.createBufferSource(); src2.buffer = noise;
-    var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 6;
-    bp.frequency.setValueAtTime(closing ? 300 : 380, t);
-    bp.frequency.exponentialRampToValueAtTime(closing ? 380 : 290, t + dur);
-    var g2 = ctx.createGain();
-    g2.gain.setValueAtTime(0.0001, t);
-    g2.gain.exponentialRampToValueAtTime(0.5, t + dur * 0.5);
-    g2.gain.exponentialRampToValueAtTime(0.0001, t + dur + 0.05);
-    var trem = ctx.createGain(); trem.gain.value = 0.6;
-    var lfo = ctx.createOscillator(); lfo.frequency.value = 11;
-    var depth = ctx.createGain(); depth.gain.value = 0.4;
-    lfo.connect(depth); depth.connect(trem.gain);
-    src2.connect(bp); bp.connect(g2); g2.connect(trem); bus(trem, 0.2);
-    src2.start(t, Math.random() * 0.7); src2.stop(t + dur + 0.1);
-    lfo.start(t); lfo.stop(t + dur + 0.1);
+    if (closing) {
+      g.gain.exponentialRampToValueAtTime(0.5, t + 0.08);
+      g.gain.linearRampToValueAtTime(1, t + dur * 0.92);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur + 0.03);
+    } else {
+      g.gain.exponentialRampToValueAtTime(1, t + 0.1);
+      g.gain.linearRampToValueAtTime(0.55, t + dur * 0.8);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur + 0.2);
+    }
+    var lv = ctx.createGain(); lv.gain.value = closing ? 0.32 : 0.24;
+    src.connect(low); low.connect(body); body.connect(grit); grit.connect(g); g.connect(lv); bus(lv, 0.22);
+    src.start(t); src.stop(t + dur + 0.3);
   }
-  /* Las dos hojas de acero se encuentran */
+  var SLAM = [[86, 60, 14], [131, 70, 11], [197, 80, 8], [289, 90, 6], [433, 100, 4], [641, 110, 2.5]];
+  var BOLT = [[260, 50, 6], [415, 60, 5], [690, 70, 3.5], [1030, 80, 2]];
+  /* Las dos hojas de acero chocan */
   function slamSound(delay) {
     var ctx = ready(); if (!ctx) return;
     var t = ctx.currentTime + delay;
-    tone(t, { from: 72, to: 30, peak: 1, attack: 0.004, decay: 0.9, wet: 0.25 });            /* retumbo */
-    hit(t, { type: 'lowpass', freq: 320, peak: 1, attack: 0.002, decay: 0.22, wet: 0.4 });     /* golpe */
-    hit(t, { freq: 1300, q: 0.8, peak: 0.3, attack: 0.001, decay: 0.05, wet: 0.5 });            /* filo */
-    [[112, 0.05, 1.3], [171, 0.04, 1], [247, 0.035, 0.8], [389, 0.022, 0.6], [563, 0.014, 0.45], [811, 0.008, 0.3]]
-      .forEach(function (p) { tone(t + 0.002, { from: p[0], peak: p[1], attack: 0.003, decay: p[2], wet: 0.6 }); }); /* el acero resuena */
+    thump(t, 14, 110, 0.6, 0.35);    /* cuerpo */
+    thump(t, 2.2, 900, 0.08, 0.3);   /* el filo del impacto */
+    strike(t, 5, SLAM, 0.5);         /* el acero resuena */
   }
-  /* La rueda del broche gira con su trinquete y tres pernos se traban */
+  /* El broche se traba: ka-chunk */
+  function clunk(t, level) {
+    thump(t, 6 * level, 180, 0.2, 0.3);
+    thump(t, 1.6 * level, 1400, 0.03, 0.3);
+    strike(t, 4 * level, BOLT, 0.4);
+  }
   function lockSound(delay) {
     var ctx = ready(); if (!ctx) return;
     var t = ctx.currentTime + delay;
-    for (var i = 0; i < 4; i++) hit(t + i * 0.04, { freq: 2300 + i * 90, q: 7, peak: 0.12, attack: 0.001, decay: 0.025, wet: 0.3 });
-    [0, 0.06, 0.12].forEach(function (off, k) {
-      var b = t + 0.17 + off;
-      tone(b, { from: 150 - k * 12, to: 70, peak: 0.55, attack: 0.002, decay: 0.16, wet: 0.35 });
-      hit(b, { freq: 950, q: 1.4, peak: 0.4, attack: 0.001, decay: 0.07, wet: 0.4 });
-      tone(b + 0.004, { type: 'triangle', from: 1480 + k * 60, peak: 0.025, attack: 0.002, decay: 0.18, wet: 0.5 });
-    });
+    clunk(t + 0.12, 0.6);
+    clunk(t + 0.2, 1);
   }
-  /* Los pernos se sueltan y la junta deja escapar el aire */
   function unlockSound(delay) {
     var ctx = ready(); if (!ctx) return;
     var t = ctx.currentTime + delay;
-    [0, 0.055, 0.11].forEach(function (off, k) {
-      var b = t + off;
-      tone(b, { from: 125 + k * 10, to: 85, peak: 0.4, attack: 0.002, decay: 0.12, wet: 0.35 });
-      hit(b, { freq: 820, q: 1.2, peak: 0.28, attack: 0.001, decay: 0.06, wet: 0.4 });
-    });
-    hit(t + 0.17, { white: true, type: 'highpass', freq: 2500, q: 0.7, peak: 0.07, attack: 0.02, decay: 0.38, wet: 0.2 });
+    clunk(t, 0.9);
+    clunk(t + 0.09, 0.55);
   }
   function closeSounds() {
-    slideSound(0, CLOSE_MS / 1000, true);
+    dragSound(0, CLOSE_MS / 1000, true);
     slamSound(CLOSE_MS / 1000 - 0.012);
     lockSound(CLOSE_MS / 1000 + 0.02);
   }
   function openSounds() {
     unlockSound(0);
-    slideSound(UNLATCH_MS / 1000 - 0.02, OPEN_MS / 1000, false);
+    dragSound(UNLATCH_MS / 1000 - 0.03, OPEN_MS / 1000, false);
   }
 
   /* ---------- La puerta ---------- */
@@ -247,7 +261,7 @@
     return Promise.all([play(seals[0], unlatch, UNLATCH_MS, 'ease-in'), play(seals[1], unlatch, UNLATCH_MS, 'ease-in')])
       .then(function (sealAnims) {
         lastAnims = sealAnims;
-        var ease = 'cubic-bezier(.25, .1, .2, 1)';
+        var ease = 'cubic-bezier(.5, 0, .25, 1)';   /* arranca lento: pesa */
         return Promise.all([
           play(leafL, [{ transform: 'translateX(0)' }, { transform: 'translateX(-101%)' }], OPEN_MS, ease),
           play(leafR, [{ transform: 'translateX(0)' }, { transform: 'translateX(101%)' }], OPEN_MS, ease)

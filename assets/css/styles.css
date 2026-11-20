@@ -449,6 +449,12 @@ h3, dt { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.15; letter-spacing:
 .door__leaf--l .door__seal { right: calc(var(--seal) / -2 + 1px); }   /* la hoja izquierda mide 1px más para que no se vea rendija */
 .door__leaf--r .door__seal { left: calc(var(--seal) / -2); }
 /* Cubre la página nueva desde el primer pintado hasta que la puerta se abre */
+/* ---------- Intro del logo (solo la primera entrada de la visita) ---------- */
+/* #0E1C2E es el fondo exacto del video, para que no se vea su borde */
+.intro { display: none; }
+html.is-intro .intro { display: block; position: fixed; inset: 0; z-index: 200; background: #0E1C2E; will-change: opacity; }
+.intro__video { display: block; width: 100%; height: 100%; object-fit: cover; will-change: opacity, transform; }
+
 html.door-arrive, html.door-arrive body { background: var(--ink); }
 html.door-arrive body::after {
   content: ""; position: fixed; inset: 0; z-index: 99;

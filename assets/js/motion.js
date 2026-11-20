@@ -13,6 +13,12 @@
   if (window.ScrollToPlugin) gsap.registerPlugin(ScrollToPlugin);
   var hasSplit = !!window.SplitText;
   if (hasSplit) gsap.registerPlugin(SplitText);
+  /* Mientras la intro del logo está en pantalla, todo GSAP espera a que
+     empiece a desvanecerse: así la portada entra a la vista, no detrás. */
+  if (window.mamutIntro && !window.mamutIntro.started) {
+    gsap.globalTimeline.pause();
+    window.mamutIntro.done.then(function () { gsap.globalTimeline.resume(); });
+  }
 
   var $ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
   var one = function (sel, ctx) { return (ctx || document).querySelector(sel); };

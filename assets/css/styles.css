@@ -488,17 +488,16 @@ html.door-arrive body::after { content: ""; position: fixed; inset: 0; z-index: 
 .pcard--antesala .pcard__state { background: #E6E0D4; color: #111B33; }
 .pcard--antesala .pcard__go { background: #111B33; color: #F2E8D6; }
 
-/* Prodigia: noche, violeta y dorado */
-.pcard--prodigia { grid-column: span 5; background: #090C14; color: #EEF0FF; padding: clamp(22px, 3vw, 34px); min-height: 380px; }
-.pcard__stars { position: absolute; inset: 0; width: 100%; height: 100%; fill: #fff; opacity: .45; }
-.pcard--prodigia::before { content: ""; position: absolute; width: 320px; height: 320px; right: -100px; top: -90px; border-radius: 50%; background: radial-gradient(circle, rgba(124, 92, 255, .55), rgba(124, 92, 255, 0) 70%); }
-.pcard--prodigia .pcard__body { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; }
+/* Prodigia: tokens de su identidad (tema oscuro), fondo liso sin efectos */
+@font-face { font-family: "Space Grotesk"; src: url("../fonts/spacegrotesk-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+.pcard--prodigia { grid-column: span 5; background: #0A0E17; color: #F4F6FB; padding: clamp(22px, 3vw, 34px); min-height: 380px; }
+.pcard--prodigia .pcard__body { display: flex; flex-direction: column; flex: 1; }
 .pro-mark { width: 52px; height: 52px; flex: none; }
-.pcard--prodigia .pcard__name { font-size: clamp(30px, 3.2vw, 42px); letter-spacing: -0.03em; }
-.pcard--prodigia .pcard__line { color: #FFB627; }
-.pcard--prodigia .pcard__what { color: #B7BCD6; }
-.pcard--prodigia .pcard__state { background: rgba(124, 92, 255, .22); color: #D6CCFF; }
-.pcard--prodigia .pcard__go { background: linear-gradient(120deg, #7C5CFF, #FFB627); color: #090C14; }
+.pcard--prodigia .pcard__name { font-family: "Space Grotesk", var(--display); font-weight: 700; font-size: clamp(30px, 3.2vw, 42px); letter-spacing: -0.02em; }
+.pcard--prodigia .pcard__line { color: #A794FF; }
+.pcard--prodigia .pcard__what { color: #8892B0; }
+.pcard--prodigia .pcard__state { background: #171D34; color: #A794FF; }
+.pcard--prodigia .pcard__go { background: #6C4CF1; color: #FFFFFF; }
 
 /* Las que vienen: cada una con su piel */
 .pcard--small { grid-column: span 3; padding: clamp(20px, 2.4vw, 26px); }

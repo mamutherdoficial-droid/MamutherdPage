@@ -449,7 +449,11 @@ h3, dt { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.15; letter-spacing:
 .door__leaf--l .door__seal { right: calc(var(--seal) / -2 + 1px); }   /* la hoja izquierda mide 1px más para que no se vea rendija */
 .door__leaf--r .door__seal { left: calc(var(--seal) / -2); }
 /* Cubre la página nueva desde el primer pintado hasta que la puerta se abre */
-html.door-arrive body::after { content: ""; position: fixed; inset: 0; z-index: 99; background: var(--ink); }
+html.door-arrive, html.door-arrive body { background: var(--ink); }
+html.door-arrive body::after {
+  content: ""; position: fixed; inset: 0; z-index: 99;
+  background: url("../marca/sello-miembro-color.svg") center / clamp(116px, 24vmin, 210px) no-repeat, linear-gradient(180deg, #13263A, var(--ink) 55%, #0B1724);
+}
 
 /* ---------- Productos: tarjetas con la identidad de cada uno ---------- */
 @font-face { font-family: "Instrument Serif"; src: url("../fonts/instrumentserif.woff") format("woff"); font-weight: 400; font-display: swap; }

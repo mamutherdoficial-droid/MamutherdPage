@@ -429,8 +429,27 @@ h3, dt { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.15; letter-spacing:
 .nav { order: 2; }
 .menu-btn { order: 4; }
 
-/* Velo del viaje entre secciones (debajo del encabezado) */
-.travel-veil { --vb: 0px; position: fixed; inset: 0; z-index: 15; pointer-events: none; visibility: hidden; opacity: 0; -webkit-backdrop-filter: blur(var(--vb)); backdrop-filter: blur(var(--vb)); }
+/* Puerta del viaje entre secciones: dos hojas que se cierran sobre todo,
+   con el sello de Mamut partido en dos como broche. Se anima con la
+   Web Animations API, así que se ve aunque el sistema pida menos movimiento. */
+.door { position: fixed; inset: 0; z-index: 100; pointer-events: none; visibility: hidden; --seal: clamp(116px, 24vmin, 210px); }
+.door.is-shown { visibility: visible; pointer-events: auto; }
+.door__leaf { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; background: linear-gradient(180deg, #13263A, var(--ink) 55%, #0B1724); }
+.door__leaf--l { left: 0; width: calc(50% + 1px); transform: translateX(-101%); box-shadow: inset -10px 0 24px rgba(0, 0, 0, .35); }
+.door__leaf--r { right: 0; transform: translateX(101%); box-shadow: inset 10px 0 24px rgba(0, 0, 0, .35); }
+.door.is-closed .door__leaf { transform: none; }
+/* Tableros de la puerta: dos marcos finos en ámbar por hoja */
+.door__leaf::before, .door__leaf::after { content: ""; position: absolute; left: 12%; right: 12%; border: 1.5px solid rgba(245, 148, 31, .28); border-radius: 14px; }
+.door__leaf::before { top: 7%; height: 36%; }
+.door__leaf::after { top: 49%; bottom: 7%; }
+.door__leaf--l::before, .door__leaf--l::after { right: 9%; }
+.door__leaf--r::before, .door__leaf--r::after { left: 9%; }
+/* Medio sello en cada hoja: al juntarse forman el broche entero */
+.door__seal { position: absolute; z-index: 1; top: 50%; width: var(--seal); height: var(--seal); margin-top: calc(var(--seal) / -2); filter: drop-shadow(0 8px 22px rgba(0, 0, 0, .45)); }
+.door__leaf--l .door__seal { right: calc(var(--seal) / -2 + 1px); }   /* la hoja izquierda mide 1px más para que no se vea rendija */
+.door__leaf--r .door__seal { left: calc(var(--seal) / -2); }
+/* Cubre la página nueva desde el primer pintado hasta que la puerta se abre */
+html.door-arrive body::after { content: ""; position: fixed; inset: 0; z-index: 99; background: var(--ink); }
 
 /* ---------- Productos: tarjetas con la identidad de cada uno ---------- */
 @font-face { font-family: "Instrument Serif"; src: url("../fonts/instrumentserif.woff") format("woff"); font-weight: 400; font-display: swap; }
@@ -503,6 +522,7 @@ h3, dt { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.15; letter-spacing:
 .pcard--tino .pcard__line { color: #74305F; }
 .pcard--tino .pcard__what { color: #5E5862; }
 .pcard--tino .pcard__state { background: #F3E4EE; color: #74305F; }
+.pcard--tino .pcard__go { background: #74305F; color: #FFFFFF; }
 
 .pcard--impromptu { background: #1C1C1A; color: #E8E4DC; }
 .pcard--impromptu .pcard__name { font-family: var(--text); font-weight: 800; letter-spacing: -0.04em; }
